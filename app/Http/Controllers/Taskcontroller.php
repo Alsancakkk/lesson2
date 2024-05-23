@@ -9,26 +9,30 @@ class Taskcontroller extends Controller
     public function index() 
     {
         $tasks = Task::all();
-        return view('tasks.index', compact('tasks'));
+        return view('layouts.app', compact('tasks'));
     }
     
+   
     public function store(Request $request)
     {
         $request->validate([
             'task' => 'required|string|max:255',
+            'description' => 'nullable|string|max:255',
         ]);
 
         Task::create([
             'task' => $request->task,
+            'description' => $request->description ?? 'No description',
+            
         ]);
 
-        return redirect()->route('tasks.index');
+        return redirect()->route('layouts.app');
     }
     
-    public function destroy(Task $task)
-    {
-        $task->delete();
-        return redirect()->route('tasks.index');
-    }
+    // public function destroy(Task $task)
+    // {
+    //     $task->delete();
+    //     return view('layouts.app')
+    // }
 
 }

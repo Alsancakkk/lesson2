@@ -8,5 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Task extends Model
 {
     use HasFactory;
-    protected $fillable = ['task', 'completed'];
+    protected $fillable = ['task', 'description', 'completed'];
+    
+    public static function getAllTasks()
+    {
+        return self::all();
+    }
 }
