@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To Do List</title>   
+    <title>@yield('title', 'To Do List')</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -15,7 +17,7 @@
             background-color: #f0f0f0;
         }
         .container {
-            width: 600px;
+            width: 800px;
             padding: 100px;
             background-color: white;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -63,49 +65,21 @@
     </style>
 </head>
 <body>
-    <button class="add-button", onclick="openPopup()">Add</button>
+    <button class="add-button" onclick="openPopup()">Add</button>
     <div class="container">
-    <div class="title">To Do List
-    <div class="tasks">
-        <table>
-        <div class="task">
-            <thead>
-                <tr>    
-                	<th>id</th>
-                    <th>Task</th>
-                    <th>Description</th>
-                    <th>Creation Time</th>
-                </tr>
-            </thead>
-        @foreach($tasks as $task)
-       
-            
-            <tbody>
-                <tr>
-                    <td>{{ $task->id }}</td>
-                    <td>{{ $task->task }}</td>
-                    <td>{{ $task->description }}</td>
-                    <td>{{ $task->time }}</td>
-                </tr>
-        </table>    
-        </div>
-    @endforeach
-</div>
-
+        @yield('content')
     </div>
+
     <div id="overlay" onclick="closePopup()"></div>
     <div id="popup">
         <h2>Add Task</h2>
         <form action="{{ route('task.store') }}" method="POST">
             @csrf
             <input type="text" name="task" placeholder="Task Name" required>
-             <input type="text" name="description" placeholder="Task Description" >
+            <input type="text" name="description" placeholder="Task Description">
             <button type="submit">Add</button>
         </form>
         <button onclick="closePopup()">Close</button>
-    </div>
-    
-  
     </div>
 
     <script>

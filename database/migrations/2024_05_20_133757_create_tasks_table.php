@@ -25,7 +25,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-       // $table->string('description')->nullable(false)->change();
+      
        $table->string('description')->default(null)->change();
+       
+
     }
 };

@@ -9,7 +9,7 @@ class Taskcontroller extends Controller
     public function index() 
     {
         $tasks = Task::all();
-        return view('layouts.app', compact('tasks'));
+        return view('pages.index', compact('tasks'));
     }
     
    
@@ -23,16 +23,46 @@ class Taskcontroller extends Controller
         Task::create([
             'task' => $request->task,
             'description' => $request->description ?? 'No description',
+            'created_at' => now(),
             
         ]);
 
-        return redirect()->route('layouts.app');
+        return redirect()->route('home');
     }
     
-    // public function destroy(Task $task)
-    // {
-    //     $task->delete();
-    //     return view('layouts.app')
-    // }
+     public function destroy($id)
+     {
+        $task = Task::findOrFail($id);
+        $task->delete();
+         return redirect()->route('home');
+    }
+
+    
+
+    public function edit($id)
+    {
+        $task = Task::findOrFail($id);
+        return view('pages.edit', compact('task'));
+    }
+    
+    public function update(Request $request, $id)
+    {
+        $task = Task::findOrFail($id);
+        $task->task = $request->input('name');
+        $task->description = $request->input('description');
+        $task->save();
+    
+        return redirect()->route('home');
+    }
+    
+
+    public function toggleCompleted($id)
+    {
+        $task = Task::find($id);
+        $task->completed = !$task->completed;
+        $task->save();
+
+        return redirect()->back();
+    }
 
 }
