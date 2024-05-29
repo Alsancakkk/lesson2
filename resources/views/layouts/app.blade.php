@@ -62,6 +62,11 @@
             background-color: rgba(0, 0, 0, 0.5);
             z-index: 999;
         }
+        .completed-task {
+        text-decoration: line-through;
+        }
+        
+
     </style>
 </head>
 <body>
@@ -92,9 +97,7 @@
             document.getElementById("popup").style.display = "none";
             document.getElementById("overlay").style.display = "none";
         }
+        
     </script>
-    @if(session('success'))
-        <p>{{ session('success') }}</p>
-    @endif
-</body>
+ 
 </html>

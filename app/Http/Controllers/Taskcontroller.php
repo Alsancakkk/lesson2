@@ -27,14 +27,14 @@ class Taskcontroller extends Controller
             
         ]);
 
-        return redirect()->route('home');
+        return redirect()->route('home')->with('success', 'Task added successfully');
     }
     
      public function destroy($id)
      {
         $task = Task::findOrFail($id);
         $task->delete();
-         return redirect()->route('home');
+         return redirect()->route('home')->with('success', 'Task deleted successfully');
     }
 
     
@@ -48,17 +48,17 @@ class Taskcontroller extends Controller
     public function update(Request $request, $id)
     {
         $task = Task::findOrFail($id);
-        $task->task = $request->input('name');
+        $task->task = $request->input('task');
         $task->description = $request->input('description');
         $task->save();
     
-        return redirect()->route('home');
+        return redirect()->route('home')->with('success', 'Task updated successfully');
     }
     
 
     public function toggleCompleted($id)
     {
-        $task = Task::find($id);
+        $task = Task::findOrFail($id);
         $task->completed = !$task->completed;
         $task->save();
 
