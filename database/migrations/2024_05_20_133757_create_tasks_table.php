@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->string('task');
-            $table->string('description')->default('No description')->change();
+            $table->string('description')->default('No description');
             $table->boolean('completed')->default(false);
-            $table->timestamps('time');
+            $table->timestamps();
         });
     }
 
@@ -25,9 +25,13 @@ return new class extends Migration
      */
     public function down(): void
     {
-      
-       $table->string('description')->default(null)->change();
-       
+        Schema::table('tasks', function (Blueprint $table) {
+            $table->string('description')->default(null)->change();
+        });
 
+        Schema::dropIfExists('tasks');
     }
 };
+
+
+  
