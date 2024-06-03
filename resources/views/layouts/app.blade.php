@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,17 +17,20 @@
             margin: 0;
             background-color: #f0f0f0;
         }
+
         .container {
             width: 800px;
             padding: 100px;
             background-color: white;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
         .title {
             text-align: center;
             font-size: 24px;
             margin-bottom: 20px;
         }
+
         .add-button {
             position: fixed;
             top: 10px;
@@ -38,9 +42,11 @@
             border-radius: 3px;
             cursor: pointer;
         }
+
         .add-button:hover {
             background-color: #218838;
         }
+
         #popup {
             display: none;
             position: fixed;
@@ -52,6 +58,7 @@
             border: 1px solid #ccc;
             z-index: 1000;
         }
+
         #overlay {
             display: none;
             position: fixed;
@@ -62,13 +69,13 @@
             background-color: rgba(0, 0, 0, 0.5);
             z-index: 999;
         }
-        .completed-task {
-        text-decoration: line-through;
-        }
-        
 
+        .completed-task {
+            text-decoration: line-through;
+        }
     </style>
 </head>
+
 <body>
     <button class="add-button" onclick="openPopup()">Add</button>
     <div class="container">
@@ -97,7 +104,6 @@
             document.getElementById("popup").style.display = "none";
             document.getElementById("overlay").style.display = "none";
         }
-        
     </script>
- 
+
 </html>
